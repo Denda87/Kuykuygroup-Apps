@@ -44,11 +44,9 @@ export default function LoginPage() {
           style={{ background: "radial-gradient(ellipse 60% 50% at 50% 30%, #D4AF3722 0%, transparent 70%)" }}/>
         <div className="absolute top-0 left-0 right-0 h-0.5"
           style={{ background: "linear-gradient(90deg, transparent, #D4AF3780, transparent)" }}/>
-
         <div className="relative z-10" style={{ filter: "drop-shadow(0 0 24px #D4AF3760)" }}>
           <Logo size={100} />
         </div>
-
         <div className="relative z-10 mt-5 flex flex-col items-center gap-1">
           <h1
             className="font-serif text-2xl font-bold tracking-[0.18em]"
@@ -69,7 +67,6 @@ export default function LoginPage() {
       {/* FORM */}
       <div className="flex-1 px-6 pt-8 pb-4 flex flex-col gap-5">
         <form onSubmit={handleLogin} className="flex flex-col gap-4">
-
           <div className="flex flex-col gap-1.5">
             <label className="text-gray-600 text-xs tracking-widest uppercase pl-1">Email / No. Handphone</label>
             <div
@@ -92,7 +89,6 @@ export default function LoginPage() {
               />
             </div>
           </div>
-
           <div className="flex flex-col gap-1.5">
             <label className="text-gray-600 text-xs tracking-widest uppercase pl-1">Password</label>
             <div
@@ -118,13 +114,11 @@ export default function LoginPage() {
               </button>
             </div>
           </div>
-
           {error && (
             <div className="rounded-xl px-4 py-3 text-center" style={{ background: "#cc000020", border: "1px solid #cc000040" }}>
               <p className="text-red-400 text-xs">{error}</p>
             </div>
           )}
-
           <button
             type="submit"
             disabled={loading}
@@ -137,7 +131,6 @@ export default function LoginPage() {
             {loading ? "Memuat..." : "LOGIN"}
           </button>
         </form>
-
         <div className="rounded-xl px-4 py-3 text-center" style={{ background: "#ffffff08", border: "1px solid #ffffff10" }}>
           <p className="text-gray-700 text-xs mb-1 tracking-wider">Demo Akun:</p>
           <p className="text-gray-600 text-[11px]">Staff: staff@kuykuy.com / kuykuy123</p>

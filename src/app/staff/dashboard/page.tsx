@@ -124,16 +124,16 @@ export default function StaffDashboard() {
             <div>
               <p className="text-gray-500 text-xs tracking-wider">Target Harian</p>
               <p className="font-serif font-bold text-white text-base mt-0.5">
-                <span style={{ color: "#D4AF37" }}>{targetDaily}</span> / {targetDaily} Customer
+                <span style={{ color: "#D4AF37" }}>{customersToday}</span> / {targetDaily} Customer
               </p>
             </div>
           </div>
           <span className="text-xs px-2 py-1 rounded-full" style={{ background: "#D4AF3715", color: "#D4AF37" }}>
-            60%
+            {Math.round((customersToday / targetDaily) * 100)}%
           </span>
         </div>
 
-        {/* Jadwal */}
+        {/* Jadwal Hari Ini */}
         <div
           className="rounded-2xl p-4"
           style={{ background: "linear-gradient(135deg, #141000, #111)", border: "1px solid #D4AF3730" }}
@@ -156,7 +156,7 @@ export default function StaffDashboard() {
                 <div className="text-center shrink-0" style={{ minWidth: 42 }}>
                   <p className="text-xs font-bold" style={{ color: s.done ? "#666" : "#D4AF37" }}>{s.time}</p>
                 </div>
-                <div className="w-px h-8 self-stretch" style={{ background: "#D4AF3730" }}/>
+                <div className="w-px h-8 self-stretch" style={{ background: "#D4AF3730" }} />
                 <div className="flex-1 min-w-0">
                   <p className={`text-sm font-medium truncate ${s.done ? "text-gray-600" : "text-white"}`}>
                     {s.name}
