@@ -20,6 +20,7 @@ export default function ProfilePage() {
       <GoldHeader title="PROFILE" />
       <div className="px-4 py-4 flex flex-col gap-3">
 
+        {/* Foto & Nama */}
         <div className="rounded-2xl p-6 text-center relative" style={{ background: "linear-gradient(135deg,#1e1800,#141000,#1a1400)", border: "1px solid #D4AF3745" }}>
           <button onClick={() => setEditMode(!editMode)} className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center" style={{ background: "#D4AF3720", border: "1px solid #D4AF3740" }}>
             <Edit2 size={13} color="#D4AF37" />
@@ -58,12 +59,13 @@ export default function ProfilePage() {
           )}
         </div>
 
+        {/* Info */}
         <div className="flex flex-col gap-2">
-          {[
+          {([
             { icon: Phone, label: "Nomor HP", value: "+62 812-3356-7890" },
             { icon: TrendingUp, label: "Total Hari Ini", value: "3 Customer" },
             { icon: Award, label: "Performa Bulanan", value: "85 Customer" },
-          ].map(({ icon: Icon, label, value }) => (
+          ] as const).map(({ icon: Icon, label, value }) => (
             <div key={label} className="flex items-center gap-4 rounded-2xl p-4" style={{ background: "linear-gradient(135deg,#141000,#111)", border: "1px solid #D4AF3728" }}>
               <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: "#D4AF3718" }}>
                 <Icon size={17} color="#D4AF37" />
@@ -76,6 +78,7 @@ export default function ProfilePage() {
           ))}
         </div>
 
+        {/* Settings */}
         <Link href="/staff/settings" className="flex items-center gap-4 rounded-2xl p-4" style={{ background: "linear-gradient(135deg,#141000,#111)", border: "1px solid #D4AF3728" }}>
           <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: "#D4AF3718" }}>
             <Settings size={17} color="#D4AF37" />
@@ -87,6 +90,7 @@ export default function ProfilePage() {
           <ChevronRight size={16} color="#444" />
         </Link>
 
+        {/* Logout */}
         <button onClick={() => { logout(); router.push("/login"); }} className="w-full py-4 font-bold text-black rounded-2xl text-sm uppercase tracking-[0.25em] flex items-center justify-center gap-2 mt-1" style={{ background: "linear-gradient(135deg,#C9A84C 0%,#f5e070 40%,#D4AF37 60%,#B8960C 100%)", boxShadow: "0 6px 24px #D4AF3750" }}>
           <LogOut size={16} />
           LOGOUT
