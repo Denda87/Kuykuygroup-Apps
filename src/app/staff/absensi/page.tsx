@@ -85,7 +85,7 @@ export default function AbsensiPage() {
                 </div>
                 <div className="flex-1">
                   <p className="text-white text-xs">{h.in} – {h.out}</p>
-                  <p className="text-gray-600 text-[10px]">{h.customers} customer · {h.service ?? ""}</p>
+                  <p className="text-gray-600 text-[10px]">{h.customers} customer</p>
                 </div>
                 <span className="text-[10px] px-2 py-0.5 rounded-full" style={h.status === "Hadir" ? { background: "#16a34a20", color: "#4ade80" } : { background: "#D4AF3720", color: "#D4AF37" }}>{h.status}</span>
               </div>

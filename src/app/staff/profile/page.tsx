@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { getUser, logout } from "@/lib/auth";
 import { useRouter } from "next/navigation";
-import { Phone, TrendingUp, Award, LogOut, Edit2, Camera, Settings } from "lucide-react";
+import { Phone, TrendingUp, Award, LogOut, Edit2, Camera, Settings, ChevronRight } from "lucide-react";
 import GoldHeader from "@/components/GoldHeader";
 import Link from "next/link";
 
