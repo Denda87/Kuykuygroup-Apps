@@ -1,25 +1,29 @@
+"use client";
+import { useId } from "react";
+
 export default function Logo({ size = 40 }: { size?: number }) {
+  const id = useId().replace(/:/g, "");
   const h = Math.round(size * 1.18);
   return (
     <svg width={size} height={h} viewBox="0 0 400 472" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="gOuter" x1="0" y1="0" x2="1" y2="1">
+        <linearGradient id={`gOuter${id}`} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor="#f8e980"/>
           <stop offset="20%" stopColor="#D4AF37"/>
           <stop offset="50%" stopColor="#f5e070"/>
           <stop offset="80%" stopColor="#B8960C"/>
           <stop offset="100%" stopColor="#6a4800"/>
         </linearGradient>
-        <linearGradient id="gLeft" x1="0" y1="0" x2="1" y2="0">
+        <linearGradient id={`gLeft${id}`} x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%" stopColor="#5a5a5a"/>
           <stop offset="100%" stopColor="#4a4a4a"/>
         </linearGradient>
-        <linearGradient id="gRight" x1="0" y1="0" x2="1" y2="0">
+        <linearGradient id={`gRight${id}`} x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%" stopColor="#1a1a1a"/>
           <stop offset="100%" stopColor="#0d0d0d"/>
         </linearGradient>
-        <clipPath id="cLeft"><rect x="0" y="0" width="200" height="472"/></clipPath>
-        <clipPath id="cRight"><rect x="200" y="0" width="200" height="472"/></clipPath>
+        <clipPath id={`cLeft${id}`}><rect x="0" y="0" width="200" height="472"/></clipPath>
+        <clipPath id={`cRight${id}`}><rect x="200" y="0" width="200" height="472"/></clipPath>
       </defs>
 
       {/* LEFT WING */}
@@ -39,9 +43,9 @@ export default function Logo({ size = 40 }: { size?: number }) {
       </g>
 
       {/* OUTER SHIELD */}
-      <path d="M200 18 L358 70 L358 248 Q358 380 200 448 Q42 380 42 248 L42 70 Z" fill="url(#gLeft)" clipPath="url(#cLeft)"/>
-      <path d="M200 18 L358 70 L358 248 Q358 380 200 448 Q42 380 42 248 L42 70 Z" fill="url(#gRight)" clipPath="url(#cRight)"/>
-      <path d="M200 18 L358 70 L358 248 Q358 380 200 448 Q42 380 42 248 L42 70 Z" fill="none" stroke="url(#gOuter)" strokeWidth="16"/>
+      <path d="M200 18 L358 70 L358 248 Q358 380 200 448 Q42 380 42 248 L42 70 Z" fill={`url(#gLeft${id})`} clipPath={`url(#cLeft${id})`}/>
+      <path d="M200 18 L358 70 L358 248 Q358 380 200 448 Q42 380 42 248 L42 70 Z" fill={`url(#gRight${id})`} clipPath={`url(#cRight${id})`}/>
+      <path d="M200 18 L358 70 L358 248 Q358 380 200 448 Q42 380 42 248 L42 70 Z" fill="none" stroke={`url(#gOuter${id})`} strokeWidth="16"/>
       <line x1="200" y1="20" x2="200" y2="446" stroke="#D4AF37" strokeWidth="2" opacity="0.5"/>
 
       {/* INNER WHITE SHIELD */}
