@@ -13,6 +13,7 @@ const schedule = [
   { time: "16:30", name: "Lina Agustina", service: "Manicure", duration: "45 mnt", done: false },
 ];
 
+// v2 - with schedule, notifications, rating
 export default function StaffDashboard() {
   const user = getUser();
   const customersToday = 3;
