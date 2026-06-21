@@ -13,16 +13,23 @@ const navItems = [
 export default function BottomNav() {
   const path = usePathname();
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-[#111] border-t border-[#D4AF37]/30 flex justify-around py-2 z-50">
-      {navItems.map(({ href, label, icon: Icon }) => {
-        const active = path === href;
-        return (
-          <Link key={href} href={href} className={`flex flex-col items-center gap-1 px-4 py-1 ${active ? "text-[#D4AF37]" : "text-gray-500"}`}>
-            <Icon size={20} />
-            <span className="text-xs">{label}</span>
-          </Link>
-        );
-      })}
+    <nav className="fixed bottom-0 left-0 right-0 z-50" style={{background: "linear-gradient(180deg, #111 0%, #0a0a0a 100%)", borderTop: "1px solid #D4AF3730", boxShadow: "0 -4px 20px #00000080"}}>
+      <div className="flex justify-around py-2 max-w-[430px] mx-auto">
+        {navItems.map(({ href, label, icon: Icon }) => {
+          const active = path === href;
+          return (
+            <Link key={href} href={href} className="flex flex-col items-center gap-1 px-4 py-1 relative">
+              {active && (
+                <span className="absolute -top-0.5 left-1/2 -translate-x-1/2 w-8 h-0.5 rounded-full" style={{background: "linear-gradient(90deg, #C9A84C, #D4AF37)"}} />
+              )}
+              <div className={`p-1.5 rounded-xl transition-all ${active ? "" : ""}`} style={active ? {background: "#D4AF3715"} : {}}>
+                <Icon size={20} color={active ? "#D4AF37" : "#555"} />
+              </div>
+              <span className="text-xs" style={{color: active ? "#D4AF37" : "#555"}}>{label}</span>
+            </Link>
+          );
+        })}
+      </div>
     </nav>
   );
 }
