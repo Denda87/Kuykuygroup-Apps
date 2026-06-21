@@ -2,7 +2,10 @@
 import { useState } from "react";
 import GoldHeader from "@/components/GoldHeader";
 import { Bell, Lock, Globe, Moon, ChevronRight, Shield, HelpCircle } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import type { LucideProps } from "lucide-react";
+import type { ForwardRefExoticComponent, RefAttributes } from "react";
+
+type LucideIcon = ForwardRefExoticComponent<LucideProps & RefAttributes<SVGSVGElement>>;
 
 function ToggleRow({ label, sub, value, onChange }: { label: string; sub?: string; value: boolean; onChange: (v: boolean) => void }) {
   return (
