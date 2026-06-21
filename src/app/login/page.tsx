@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Logo from "@/components/Logo";
 import { login } from "@/lib/auth";
-import { Eye, EyeOff, Mail, Lock } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, LayoutGrid, ClipboardList, BarChart2, User } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -28,72 +28,103 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col" style={{background: "linear-gradient(160deg, #0a0a0a 0%, #1a1200 50%, #0a0a0a 100%)"}}>
-      {/* Premium Header Banner */}
-      <div className="relative flex flex-col items-center justify-center pt-16 pb-10 px-4">
-        <div className="absolute inset-0" style={{background: "linear-gradient(180deg, #D4AF3710 0%, transparent 100%)"}} />
-        <div className="relative">
-          <div className="absolute -inset-4 rounded-full" style={{background: "radial-gradient(circle, #D4AF3730 0%, transparent 70%)"}} />
-          <Logo size={100} />
+    <div
+      className="min-h-screen flex flex-col"
+      style={{ background: "linear-gradient(160deg, #0f0f00 0%, #0a0a0a 40%, #0f0f00 100%)" }}
+    >
+      {/* ===== LOGO AREA ===== */}
+      <div
+        className="flex flex-col items-center justify-center pt-12 pb-6 px-6"
+        style={{
+          background: "linear-gradient(180deg, #1c1400 0%, #0a0a0a 100%)",
+          borderBottom: "1.5px solid #D4AF3730",
+        }}
+      >
+        <div style={{ filter: "drop-shadow(0 0 18px #D4AF3750)" }}>
+          <Logo size={90} />
         </div>
-        <h1 className="font-serif text-3xl font-bold text-[#D4AF37] mt-4 tracking-widest">Welcome Back</h1>
-        <p className="text-gray-500 text-sm mt-1 tracking-wider">KUYKUY GROUP</p>
+        <h1 className="font-serif text-2xl font-bold mt-4 tracking-widest" style={{ color: "#D4AF37" }}>
+          Welcome Back
+        </h1>
+        <div className="mt-1 w-16 h-0.5 rounded-full" style={{ background: "linear-gradient(90deg, transparent, #D4AF37, transparent)" }} />
       </div>
 
-      {/* Form Card */}
-      <div className="flex-1 px-6 pb-10">
-        <div className="rounded-3xl border border-[#D4AF37]/30 p-7" style={{background: "linear-gradient(145deg, #161616, #111)", boxShadow: "0 0 40px #D4AF3715"}}>
-          <form onSubmit={handleLogin} className="space-y-5">
-            {/* Email */}
-            <div>
-              <label className="block text-xs text-[#D4AF37] mb-2 tracking-widest uppercase">Email / No. Handphone</label>
-              <div className="relative">
-                <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#D4AF37]/60" />
-                <input
-                  type="text"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  className="w-full pl-11 pr-4 py-4 rounded-2xl text-white text-sm focus:outline-none transition-all placeholder:text-gray-600"
-                  style={{background: "#0d0d0d", border: "1px solid #D4AF3740"}}
-                  placeholder="staff@kuykuy.com"
-                  required
-                />
-              </div>
-            </div>
-            {/* Password */}
-            <div>
-              <label className="block text-xs text-[#D4AF37] mb-2 tracking-widest uppercase">Password</label>
-              <div className="relative">
-                <Lock size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#D4AF37]/60" />
-                <input
-                  type={showPass ? "text" : "password"}
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  className="w-full pl-11 pr-12 py-4 rounded-2xl text-white text-sm focus:outline-none transition-all placeholder:text-gray-600"
-                  style={{background: "#0d0d0d", border: "1px solid #D4AF3740"}}
-                  placeholder="••••••••"
-                  required
-                />
-                <button type="button" onClick={() => setShowPass(!showPass)} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#D4AF37]">
-                  {showPass ? <EyeOff size={16} /> : <Eye size={16} />}
-                </button>
-              </div>
-            </div>
-            {error && <p className="text-red-400 text-sm text-center">{error}</p>}
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-4 font-bold text-black rounded-2xl text-sm uppercase tracking-widest disabled:opacity-60 mt-2"
-              style={{background: "linear-gradient(135deg, #C9A84C, #D4AF37, #B8960C)", boxShadow: "0 4px 20px #D4AF3740"}}
+      {/* ===== FORM AREA ===== */}
+      <div className="flex-1 px-6 pt-8 pb-6 flex flex-col gap-4">
+        <form onSubmit={handleLogin} className="flex flex-col gap-4">
+          {/* Email */}
+          <div>
+            <div
+              className="flex items-center gap-3 rounded-2xl px-4 py-3"
+              style={{ background: "#111", border: "1px solid #D4AF3740" }}
             >
-              {loading ? "Memuat..." : "LOGIN"}
-            </button>
-          </form>
-          <div className="mt-6 pt-5 border-t border-[#D4AF37]/10 text-center text-xs text-gray-600 space-y-1">
-            <p>Staff: staff@kuykuy.com / kuykuy123</p>
-            <p>Admin: admin@kuykuy.com / admin123</p>
+              <Mail size={18} color="#D4AF3780" />
+              <input
+                type="text"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                className="flex-1 bg-transparent text-white text-sm focus:outline-none placeholder:text-gray-600"
+                placeholder="Email / No. Handphone"
+                required
+              />
+            </div>
           </div>
+
+          {/* Password */}
+          <div>
+            <div
+              className="flex items-center gap-3 rounded-2xl px-4 py-3"
+              style={{ background: "#111", border: "1px solid #D4AF3740" }}
+            >
+              <Lock size={18} color="#D4AF3780" />
+              <input
+                type={showPass ? "text" : "password"}
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                className="flex-1 bg-transparent text-white text-sm focus:outline-none placeholder:text-gray-600"
+                placeholder="Password"
+                required
+              />
+              <button type="button" onClick={() => setShowPass(!showPass)}>
+                {showPass ? <EyeOff size={16} color="#666" /> : <Eye size={16} color="#666" />}
+              </button>
+            </div>
+          </div>
+
+          {error && <p className="text-red-400 text-xs text-center">{error}</p>}
+
+          {/* LOGIN BUTTON */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-4 font-bold text-black rounded-2xl text-sm uppercase tracking-[0.25em] disabled:opacity-60"
+            style={{
+              background: "linear-gradient(135deg, #C9A84C 0%, #f5e070 40%, #D4AF37 60%, #B8960C 100%)",
+              boxShadow: "0 4px 24px #D4AF3750",
+            }}
+          >
+            {loading ? "Memuat..." : "LOGIN"}
+          </button>
+        </form>
+
+        {/* Demo credentials */}
+        <div className="text-center text-xs text-gray-700 space-y-0.5 mt-2">
+          <p>Staff: staff@kuykuy.com / kuykuy123</p>
+          <p>Admin: admin@kuykuy.com / admin123</p>
         </div>
+      </div>
+
+      {/* ===== BOTTOM NAV (decorative) ===== */}
+      <div
+        className="flex justify-around items-center py-3 px-4"
+        style={{ borderTop: "1.5px solid #D4AF3730", background: "#0a0a0a" }}
+      >
+        {[{ icon: LayoutGrid, label: "Dashboard" }, { icon: ClipboardList, label: "Absensi" }, { icon: BarChart2, label: "Kinerja" }, { icon: User, label: "Profile" }].map(({ icon: Icon, label }) => (
+          <div key={label} className="flex flex-col items-center gap-0.5">
+            <Icon size={20} color="#444" strokeWidth={1.8} />
+            <span className="text-[10px] text-gray-700 tracking-wider">{label}</span>
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -12,10 +12,9 @@ export default function StaffLayout({ children }: { children: React.ReactNode })
   }, [router]);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
-      <div className="max-w-[430px] mx-auto relative">
+    <div className="min-h-screen" style={{ background: "#0a0a0a" }}>
+      <div className="max-w-[430px] mx-auto relative pb-20">
         {children}
-        <div className="h-20" />
       </div>
       <BottomNav />
     </div>
