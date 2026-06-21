@@ -27,3 +27,14 @@ body {
 .gold-border {
   border-color: #D4AF37;
 }
+
+.premium-card {
+  background: linear-gradient(135deg, #1a1a0d, #161616);
+  border: 1px solid #D4AF3730;
+  border-radius: 1rem;
+}
+
+select option {
+  background: #111;
+  color: #fff;
+}
