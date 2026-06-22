@@ -22,7 +22,7 @@ const notifications = [
 ];
 
 export default function StaffDashboard() {
-  const [user, setUser] = useState<{ name: string; email: string; branch: string; staffId: string } | null>(null);
+  const [user, setUser] = useState<{ name: string; email: string; branch: string; staffId: string; jobRole: string } | null>(null);
   const [record, setRecord] = useState<ReturnType<typeof getMyRecord>>(undefined);
   const [now, setNow] = useState("");
 
@@ -40,6 +40,8 @@ export default function StaffDashboard() {
   }, []);
 
   const name = user?.name || "Budi Santoso";
+  const jobRole = user?.jobRole || "Therapist";
+  const isTherapist = jobRole === "Therapist";
   const branch = record?.branch || user?.branch || "Strawberry Spa & Therapy";
   const checkedIn = record?.checkedIn ?? false;
   const checkInTime = record?.checkInTime || "";
@@ -49,12 +51,19 @@ export default function StaffDashboard() {
   const komisi = customers * 15000;
   const doneCount = schedule.filter(s => s.done).length;
 
-  const statCards = [
-    { icon: Users, label: "Customer", value: `${customers}/${target}`, color: "#D4AF37" },
-    { icon: Star, label: "Rating", value: "4.8", color: "#f59e0b" },
-    { icon: DollarSign, label: "Komisi", value: `Rp ${(komisi / 1000).toFixed(0)}k`, color: "#22c55e" },
-    { icon: Award, label: "Target", value: `${pct}%`, color: "#3b82f6" },
-  ];
+  const statCards = isTherapist
+    ? [
+        { icon: Users, label: "Customer", value: `${customers}/${target}`, color: "#D4AF37" },
+        { icon: Star, label: "Rating", value: "4.8", color: "#f59e0b" },
+        { icon: DollarSign, label: "Komisi", value: `Rp ${(komisi / 1000).toFixed(0)}k`, color: "#22c55e" },
+        { icon: Award, label: "Target", value: `${pct}%`, color: "#3b82f6" },
+      ]
+    : [
+        { icon: Star, label: "Rating", value: "4.8", color: "#f59e0b" },
+        { icon: Award, label: "Jabatan", value: jobRole, color: "#D4AF37" },
+        { icon: CheckCircle, label: "Status", value: checkedIn ? "Hadir" : "Absen", color: checkedIn ? "#22c55e" : "#ef4444" },
+        { icon: Clock, label: "Jam Masuk", value: record?.checkInTime || "—", color: "#3b82f6" },
+      ];
 
   return (
     <div style={{ background: "#08070a", minHeight: "100vh", paddingBottom: 100 }}>
@@ -112,7 +121,7 @@ export default function StaffDashboard() {
             <div style={{ fontSize: 22, fontWeight: 700, color: "#fff", fontFamily: "Georgia,serif", lineHeight: 1.2 }}>{name}</div>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 6 }}>
               <span style={{ fontSize: 10, padding: "3px 10px", borderRadius: 20, background: "#D4AF3720", color: "#D4AF37", border: "1px solid #D4AF3740", fontWeight: 600 }}>
-                Senior Therapist
+                {jobRole}
               </span>
               <div style={{ display: "flex", alignItems: "center", gap: 3 }}>
                 <Star size={11} fill="#D4AF37" color="#D4AF37" />
@@ -168,8 +177,8 @@ export default function StaffDashboard() {
           ))}
         </div>
 
-        {/* ── PROGRESS TARGET ── */}
-        <div style={{ background: "linear-gradient(135deg,#1a1800,#141000)", border: "1px solid #D4AF3740", borderRadius: 20, padding: 20 }}>
+        {/* ── PROGRESS TARGET — hanya Therapist ── */}
+        {isTherapist && <div style={{ background: "linear-gradient(135deg,#1a1800,#141000)", border: "1px solid #D4AF3740", borderRadius: 20, padding: 20 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
             <div>
               <div style={{ fontSize: 10, color: "#D4AF3790", letterSpacing: "0.25em", textTransform: "uppercase" }}>Target Hari Ini</div>
@@ -196,7 +205,7 @@ export default function StaffDashboard() {
             <span style={{ fontSize: 11, color: "#888" }}>{target - customers} customer lagi untuk capai target</span>
             <span style={{ fontSize: 11, color: "#22c55e", fontWeight: 600 }}>+Rp {komisi.toLocaleString("id-ID")} komisi</span>
           </div>
-        </div>
+        </div>}
 
         {/* ── QUICK ACTIONS ── */}
         <div>
@@ -287,8 +296,8 @@ export default function StaffDashboard() {
           </div>
         </div>
 
-        {/* ── KOMISI SUMMARY ── */}
-        <div style={{ background: "linear-gradient(135deg,#052010,#071a0a)", border: "1px solid #22c55e30", borderRadius: 20, padding: 20 }}>
+        {/* ── KOMISI SUMMARY — hanya Therapist ── */}
+        {isTherapist && <div style={{ background: "linear-gradient(135deg,#052010,#071a0a)", border: "1px solid #22c55e30", borderRadius: 20, padding: 20 }}>
           <div style={{ fontSize: 10, color: "#4ade8090", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 12 }}>Estimasi Komisi Hari Ini</div>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <div>
@@ -299,7 +308,7 @@ export default function StaffDashboard() {
               <TrendingUp size={28} color="#4ade80" />
             </div>
           </div>
-        </div>
+        </div>}
 
       </div>
     </div>
