@@ -17,6 +17,7 @@ const BRANCH_MAPS: Record<string, string> = {
   "V PHOENIX": "https://maps.app.goo.gl/4z7PPgg5myAM4TCE7",
   "SIERRA": "https://maps.app.goo.gl/m6dRvP9BxcfGB1pT7",
   "VIERZHEN": "https://maps.app.goo.gl/Dw31k7BnjPSJ8Xuw8",
+  "MIRACLE KUY": "https://maps.app.goo.gl/TfF55aGh7N4TPEXC6",
   "INFINITY": "https://maps.app.goo.gl/fYaPmGRKddJkLjbg8",
 };
 
