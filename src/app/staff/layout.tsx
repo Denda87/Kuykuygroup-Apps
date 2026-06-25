@@ -12,8 +12,14 @@ export default function StaffLayout({ children }: { children: React.ReactNode })
   }, [router]);
 
   return (
-    <div className="min-h-screen" style={{ background: "#0a0a0a" }}>
-      <div className="max-w-[430px] mx-auto relative pb-20">
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "radial-gradient(120% 90% at 50% -10%, #1a1712 0%, #0c0c0d 46%, #060606 100%)",
+        fontFamily: "'Manrope', sans-serif",
+      }}
+    >
+      <div className="max-w-[430px] mx-auto relative pb-24">
         {children}
       </div>
       <BottomNav />
