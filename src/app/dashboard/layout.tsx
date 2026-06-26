@@ -1,15 +1,24 @@
 "use client";
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { getUser } from "@/lib/auth";
 import AdminSidebar from "@/components/AdminSidebar";
 
+const KASIR_ROLES = ["Kasir", "Sub Kasir"];
+
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const pathname = usePathname();
   useEffect(() => {
     const user = getUser();
-    if (!user || user.role !== "admin") router.push("/login");
-  }, [router]);
+    if (!user) { router.push("/login"); return; }
+    // Admin punya akses penuh ke seluruh dashboard.
+    if (user.role === "admin") return;
+    // Kasir / Sub Kasir hanya boleh mengakses halaman Kasir POS.
+    if (KASIR_ROLES.includes(user.jobRole) && pathname.startsWith("/dashboard/kasir")) return;
+    // Selain itu arahkan: kasir -> halaman kasir, lainnya -> login.
+    router.push(KASIR_ROLES.includes(user.jobRole) ? "/dashboard/kasir" : "/login");
+  }, [router, pathname]);
 
   return (
     <div
