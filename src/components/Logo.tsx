@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function LogoSVG({ size }: { size: number }) {
   const h = Math.round(size * 1.18);
@@ -67,18 +67,38 @@ function LogoSVG({ size }: { size: number }) {
   );
 }
 
+export const CUSTOM_LOGO_KEY = "kuykuy_custom_logo";
+
 export default function Logo({ size = 40 }: { size?: number }) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [imgError, setImgError] = useState(false);
+  const [customLogo, setCustomLogo] = useState<string | null>(null);
   const h = Math.round(size * 1.18);
+
+  useEffect(() => {
+    const read = () => {
+      if (typeof window === "undefined") return;
+      setCustomLogo(localStorage.getItem(CUSTOM_LOGO_KEY));
+      setImgError(false);
+    };
+    read();
+    // Perbarui logo secara langsung saat diganti dari halaman Pengaturan
+    window.addEventListener("kuykuy-logo-updated", read);
+    window.addEventListener("storage", read);
+    return () => {
+      window.removeEventListener("kuykuy-logo-updated", read);
+      window.removeEventListener("storage", read);
+    };
+  }, []);
+
+  const src = customLogo || "/kuykuy-logo.png";
 
   if (!imgError) {
     return (
       <img
-        src="/kuykuy-logo.png"
+        src={src}
         width={size}
         height={h}
-        alt="Kuykuy Group"
+        alt="Logo"
         onError={() => setImgError(true)}
         style={{ objectFit: "contain", display: "block" }}
       />
