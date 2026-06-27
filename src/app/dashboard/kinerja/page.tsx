@@ -12,8 +12,6 @@ const GOLD_GRAD = "linear-gradient(135deg,#f4d886,#d4af37 55%,#b8860b)";
 const PANEL_BG = "linear-gradient(155deg,#15110a 0%,#0d0a05 100%)";
 const BORDER = "1px solid rgba(212,175,55,.16)";
 
-const MONTHS = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun"];
-
 const trendData = [
   { bulan: "Jan", produktivitas: 88, kepuasan: 4.5 },
   { bulan: "Feb", produktivitas: 92, kepuasan: 4.6 },
@@ -72,16 +70,16 @@ const BRANCH_MAPS: Record<string, string> = {
 };
 
 const KARYAWAN_DATA: Karyawan[] = [
-  { id:1, nama:"Sari Dewi",      cabang:"V Phoenix", status:"Memijat",  absensi:26, targetHarian:6, targetBulanan:120, pencapaianBulanan:134, rating:4.9, komisi:3_420_000, foto:"" },
-  { id:2, nama:"Rini Susanti",   cabang:"Sierra",    status:"Online",   absensi:25, targetHarian:5, targetBulanan:100, pencapaianBulanan:112, rating:4.8, komisi:2_980_000, foto:"" },
-  { id:3, nama:"Mega Pratiwi",   cabang:"Crystal",   status:"Istirahat",absensi:24, targetHarian:5, targetBulanan:100, pencapaianBulanan:98,  rating:4.7, komisi:2_650_000, foto:"" },
-  { id:4, nama:"Lina Handayani", cabang:"Vierzhen",  status:"Memijat",  absensi:27, targetHarian:6, targetBulanan:120, pencapaianBulanan:128, rating:4.8, komisi:3_180_000, foto:"" },
-  { id:5, nama:"Dewi Kurnia",    cabang:"Miracle",   status:"Online",   absensi:22, targetHarian:4, targetBulanan:80,  pencapaianBulanan:85,  rating:4.6, komisi:2_200_000, foto:"" },
-  { id:6, nama:"Ika Rahayu",     cabang:"Kuy Cibi",  status:"Online",   absensi:26, targetHarian:5, targetBulanan:100, pencapaianBulanan:105, rating:4.7, komisi:2_720_000, foto:"" },
-  { id:7, nama:"Putri Anjani",   cabang:"Xi Kuy",    status:"Offline",  absensi:20, targetHarian:4, targetBulanan:80,  pencapaianBulanan:72,  rating:4.4, komisi:1_850_000, foto:"" },
-  { id:8, nama:"Ayu Wulandari",  cabang:"Kyu Betos", status:"Memijat",  absensi:28, targetHarian:6, targetBulanan:120, pencapaianBulanan:136, rating:5.0, komisi:3_600_000, foto:"" },
-  { id:9, nama:"Sri Wahyuni",    cabang:"Infinity",  status:"Online",   absensi:25, targetHarian:5, targetBulanan:100, pencapaianBulanan:110, rating:4.8, komisi:2_900_000, foto:"" },
-  { id:10,nama:"Novi Andriani",  cabang:"B Kuy",     status:"Istirahat",absensi:23, targetHarian:5, targetBulanan:100, pencapaianBulanan:94,  rating:4.5, komisi:2_450_000, foto:"" },
+  { id:1, nama:"Sari Dewi",      cabang:"V Phoenix", status:"Memijat",  absensi:26, targetHarian:6, targetBulanan:120, pencapaianBulanan:134, rating:4.9, komisi:3420000, foto:"" },
+  { id:2, nama:"Rini Susanti",   cabang:"Sierra",    status:"Online",   absensi:25, targetHarian:5, targetBulanan:100, pencapaianBulanan:112, rating:4.8, komisi:2980000, foto:"" },
+  { id:3, nama:"Mega Pratiwi",   cabang:"Crystal",   status:"Istirahat",absensi:24, targetHarian:5, targetBulanan:100, pencapaianBulanan:98,  rating:4.7, komisi:2650000, foto:"" },
+  { id:4, nama:"Lina Handayani", cabang:"Vierzhen",  status:"Memijat",  absensi:27, targetHarian:6, targetBulanan:120, pencapaianBulanan:128, rating:4.8, komisi:3180000, foto:"" },
+  { id:5, nama:"Dewi Kurnia",    cabang:"Miracle",   status:"Online",   absensi:22, targetHarian:4, targetBulanan:80,  pencapaianBulanan:85,  rating:4.6, komisi:2200000, foto:"" },
+  { id:6, nama:"Ika Rahayu",     cabang:"Kuy Cibi",  status:"Online",   absensi:26, targetHarian:5, targetBulanan:100, pencapaianBulanan:105, rating:4.7, komisi:2720000, foto:"" },
+  { id:7, nama:"Putri Anjani",   cabang:"Xi Kuy",    status:"Offline",  absensi:20, targetHarian:4, targetBulanan:80,  pencapaianBulanan:72,  rating:4.4, komisi:1850000, foto:"" },
+  { id:8, nama:"Ayu Wulandari",  cabang:"Kyu Betos", status:"Memijat",  absensi:28, targetHarian:6, targetBulanan:120, pencapaianBulanan:136, rating:5.0, komisi:3600000, foto:"" },
+  { id:9, nama:"Sri Wahyuni",    cabang:"Infinity",  status:"Online",   absensi:25, targetHarian:5, targetBulanan:100, pencapaianBulanan:110, rating:4.8, komisi:2900000, foto:"" },
+  { id:10,nama:"Novi Andriani",  cabang:"B Kuy",     status:"Istirahat",absensi:23, targetHarian:5, targetBulanan:100, pencapaianBulanan:94,  rating:4.5, komisi:2450000, foto:"" },
 ];
 
 function initials(nama: string) {
@@ -163,14 +161,12 @@ export default function KinerjaPage() {
 
   return (
     <AdminPageShell title="Dashboard Kinerja Karyawan">
-      {/* Toast */}
       {toast && (
         <div style={{ position: "fixed", bottom: 28, right: 28, zIndex: 999, background: GOLD_GRAD, color: "#1a1305", fontWeight: 700, fontSize: 13, padding: "12px 22px", borderRadius: 12, boxShadow: "0 8px 28px rgba(212,175,55,.4)" }}>
           {toast}
         </div>
       )}
 
-      {/* HEADER */}
       <div style={{ background: PANEL_BG, border: BORDER, borderRadius: 16, padding: "20px 24px", marginBottom: 20, boxShadow: "0 14px 34px rgba(0,0,0,.5)" }}>
         <div className="flex items-center justify-between flex-wrap" style={{ gap: 14 }}>
           <div>
@@ -191,7 +187,6 @@ export default function KinerjaPage() {
         </div>
       </div>
 
-      {/* STAT CARDS */}
       <div className="flex flex-wrap" style={{ gap: 16, marginBottom: 20 }}>
         <StatCard icon={TrendingUp} label="Total Terapis Aktif" value="28/30" sub="2 sedang cuti" color="#5fae7d" />
         <StatCard icon={Star} label="Rata-rata Rating Karyawan" value="4.8/5.0" sub="↑ 0.2 dari bulan lalu" color={GOLD} />
@@ -199,9 +194,7 @@ export default function KinerjaPage() {
         <StatCard icon={Zap} label="Produktivitas Rata-rata" value="120%" sub="vs 101% bulan lalu" color="#e8c874" />
       </div>
 
-      {/* CHARTS ROW */}
       <div className="grid grid-cols-2" style={{ gap: 16, marginBottom: 20 }}>
-        {/* Line Chart */}
         <div style={{ background: PANEL_BG, border: BORDER, borderRadius: 16, padding: 22, boxShadow: "0 14px 34px rgba(0,0,0,.5)" }}>
           <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: 14, fontWeight: 600, color: "#e8d49a", marginBottom: 18 }}>Tren Produktivitas & Kepuasan (6 Bulan)</h3>
           <ResponsiveContainer width="100%" height={220}>
@@ -221,7 +214,6 @@ export default function KinerjaPage() {
           </div>
         </div>
 
-        {/* Pie Chart */}
         <div style={{ background: PANEL_BG, border: BORDER, borderRadius: 16, padding: 22, boxShadow: "0 14px 34px rgba(0,0,0,.5)" }}>
           <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: 14, fontWeight: 600, color: "#e8d49a", marginBottom: 18 }}>Distribusi Komisi & Bonus (Bulan Ini)</h3>
           <div className="flex items-center" style={{ gap: 20 }}>
@@ -253,7 +245,6 @@ export default function KinerjaPage() {
         </div>
       </div>
 
-      {/* KINERJA TABLE */}
       <div style={{ background: PANEL_BG, border: BORDER, borderRadius: 16, padding: 22, boxShadow: "0 14px 34px rgba(0,0,0,.5)", marginBottom: 20 }}>
         <div className="flex items-center justify-between flex-wrap" style={{ gap: 12, marginBottom: 18 }}>
           <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: 15, fontWeight: 600, color: "#e8d49a", letterSpacing: ".5px" }}>Detail Kinerja Karyawan</h3>
@@ -316,9 +307,7 @@ export default function KinerjaPage() {
         </div>
       </div>
 
-      {/* BOTTOM ROW: Quick Management + Map */}
       <div className="grid grid-cols-2" style={{ gap: 16, marginBottom: 20 }}>
-        {/* Quick Management */}
         <div style={{ background: PANEL_BG, border: BORDER, borderRadius: 16, padding: 22, boxShadow: "0 14px 34px rgba(0,0,0,.5)" }}>
           <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: 15, fontWeight: 600, color: "#e8d49a", marginBottom: 18, letterSpacing: ".5px" }}>Quick Management</h3>
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
@@ -374,7 +363,6 @@ export default function KinerjaPage() {
           </div>
         </div>
 
-        {/* Branch Map */}
         <div style={{ background: PANEL_BG, border: BORDER, borderRadius: 16, padding: 22, boxShadow: "0 14px 34px rgba(0,0,0,.5)" }}>
           <div className="flex items-center justify-between" style={{ marginBottom: 14 }}>
             <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: 15, fontWeight: 600, color: "#e8d49a", letterSpacing: ".5px" }}>Lokasi Cabang</h3>

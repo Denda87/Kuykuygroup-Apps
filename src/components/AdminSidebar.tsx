@@ -9,7 +9,6 @@ import { LayoutDashboard, UserCog, Layers, CalendarClock, Target, MapPin, FileTe
 
 type NavItem = | { type: "link"; label: string; icon: React.ElementType; href: string } | { type: "divider"; label: string };
 
-// Menu lengkap untuk Admin
 const adminNavItems: NavItem[] = [
   { type: "link", label: "Dashboard", icon: LayoutDashboard, href: "/dashboard" },
   { type: "divider", label: "OPERASIONAL" },
@@ -28,7 +27,6 @@ const adminNavItems: NavItem[] = [
   { type: "link", label: "Pengaturan", icon: Settings, href: "/dashboard/pengaturan" },
 ];
 
-// Menu terbatas untuk Kasir / Sub Kasir
 const kasirNavItems: NavItem[] = [
   { type: "divider", label: "OPERASIONAL KASIR" },
   { type: "link", label: "Kasir POS", icon: ShoppingCart, href: "/dashboard/kasir" },
@@ -37,7 +35,6 @@ const kasirNavItems: NavItem[] = [
 ];
 
 const KASIR_ROLES = ["Kasir", "Sub Kasir"];
-
 const GOLD_GRAD = "linear-gradient(135deg,#f4d886,#d4af37 55%,#b8860b)";
 
 export default function AdminSidebar() {
@@ -70,7 +67,6 @@ export default function AdminSidebar() {
     >
       <div style={{ position: "absolute", top: 0, right: 0, width: 1, height: "100%", background: "linear-gradient(180deg,transparent,rgba(212,175,55,.35),transparent)" }} />
 
-      {/* brand */}
       <div className="flex items-center" style={{ gap: 13, padding: "4px 6px 18px" }}>
         <div style={{ width: 52, height: 52, borderRadius: 13, overflow: "hidden", border: "1px solid rgba(212,175,55,.4)", boxShadow: "0 0 18px rgba(212,175,55,.25)", flex: "0 0 52px", display: "flex", alignItems: "center", justifyContent: "center", background: "#000" }}>
           <Logo size={42} />
@@ -81,13 +77,11 @@ export default function AdminSidebar() {
         </div>
       </div>
 
-      {/* search */}
       <div className="flex items-center" style={{ gap: 9, background: "rgba(255,255,255,.035)", border: "1px solid rgba(212,175,55,.16)", borderRadius: 11, padding: "10px 12px", marginBottom: 20 }}>
         <Search size={15} color="#9a8f70" />
         <input className="bg-transparent flex-1 outline-none" style={{ fontSize: 12.5, color: "#c9bfa3" }} placeholder="Quick Search..." />
       </div>
 
-      {/* nav */}
       <nav className="flex flex-col flex-1 overflow-y-auto" style={{ gap: 3 }}>
         {navItems.map((item, idx) => {
           if (item.type === "divider") return (
@@ -111,7 +105,6 @@ export default function AdminSidebar() {
         })}
       </nav>
 
-      {/* profile card bottom */}
       <div className="flex items-center" style={{ marginTop: 16, gap: 12, padding: 12, borderRadius: 13, background: "linear-gradient(135deg,rgba(212,175,55,.10),rgba(212,175,55,.02))", border: "1px solid rgba(212,175,55,.18)" }}>
         <div style={{ width: 42, height: 42, borderRadius: 10, overflow: "hidden", border: "1px solid rgba(212,175,55,.4)", flex: "0 0 42px", display: "flex", alignItems: "center", justifyContent: "center", background: "#000" }}>
           <Logo size={34} />
